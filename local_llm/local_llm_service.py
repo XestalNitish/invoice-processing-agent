@@ -42,21 +42,31 @@ def strip_thinking(text: str) -> str:
 
 
 def get_model_path() -> Path:
-    """Return path to downloaded GGUF weights."""
+    """Return path to downloaded GGUF weights, supporting environment variable, relative paths, and OS fallbacks."""
+    env_model = os.environ.get("LOCAL_MODEL_PATH")
+    if env_model and Path(env_model).exists():
+        return Path(env_model)
+
     candidates = [
-            _ROOT / "models" / "Spark-X2.5-4B-GGUF" / "Spark-X2.5-4B-Q4_K_M.gguf",
+        _ROOT / "models" / "Spark-X2.5-4B-GGUF" / "Spark-X2.5-4B-Q4_K_M.gguf",
+        _ROOT / "models" / "Spark-X2.5-1.7B-Q4_K_M.gguf",
+    ]
+    if sys.platform == "win32":
+        candidates.extend([
             Path("D:/project3/models/Spark-X2.5-4B-GGUF/Spark-X2.5-4B-Q4_K_M.gguf"),
-            _ROOT / "models" / "Spark-X2.5-1.7B-Q4_K_M.gguf",
             Path("D:/project3/models/Spark-X2.5-1.7B-Q4_K_M.gguf"),
-        ]
+        ])
+
     for c in candidates:
         if c.exists():
             return c
-    model_dir = _ROOT / "models" / "Spark-X2.5-4B-GGUF"
-    if model_dir.exists():
-        for f in model_dir.glob("*.gguf"):
-            return f
-    for search_dir in [_ROOT / "models", Path("D:/agentic ai/models"), Path("d:/local llm/models")]:
+
+    # Search inside _ROOT/models
+    search_dirs = [_ROOT / "models"]
+    if sys.platform == "win32":
+        search_dirs.extend([Path("D:/agentic ai/models"), Path("d:/local llm/models"), Path("D:/project3/models")])
+
+    for search_dir in search_dirs:
         if search_dir.exists():
             for f in search_dir.rglob("*.gguf"):
                 return f
@@ -64,22 +74,30 @@ def get_model_path() -> Path:
 
 
 def get_server_binary() -> Optional[Path]:
-    """Find local llama-server executable binary."""
-    candidates = [
-        _ROOT / "llama_bin" / "llama-server.exe",
-        _ROOT / "llama_bin" / "llama-server",
-        _ROOT.parent / "local llm" / "llama_bin" / "llama-server.exe",
-        Path("d:/local llm/llama_bin/llama-server.exe"),
-        Path("D:/agentic ai/llama_bin/llama-server.exe"),
-        Path(os.environ.get("LOCALAPPDATA", "")) / "Microsoft" / "WinGet" / "Packages" / "ggml.llamacpp_Microsoft.Winget.Source_8wekyb3d8bbwe" / "llama-server.EXE",
-    ]
-    for c in candidates:
-        if c.exists():
-            return c
+    """Find llama-server executable binary via PATH, env var, or candidate locations."""
+    env_bin = os.environ.get("LLAMA_SERVER_BIN")
+    if env_bin and Path(env_bin).exists():
+        return Path(env_bin)
+
     for name in ["llama-server", "llama-server.exe"]:
         in_path = shutil.which(name)
         if in_path:
             return Path(in_path)
+
+    candidates = [
+        _ROOT / "llama_bin" / ("llama-server.exe" if sys.platform == "win32" else "llama-server"),
+    ]
+    if sys.platform == "win32":
+        candidates.extend([
+            _ROOT.parent / "local llm" / "llama_bin" / "llama-server.exe",
+            Path("d:/local llm/llama_bin/llama-server.exe"),
+            Path("D:/agentic ai/llama_bin/llama-server.exe"),
+            Path(os.environ.get("LOCALAPPDATA", "")) / "Microsoft" / "WinGet" / "Packages" / "ggml.llamacpp_Microsoft.Winget.Source_8wekyb3d8bbwe" / "llama-server.EXE",
+        ])
+
+    for c in candidates:
+        if c.exists():
+            return c
     return None
 
 
@@ -178,7 +196,8 @@ def query_local_model(
     messages: List[Dict[str, str]],
     max_tokens: int = 1000000,
     temperature: float = 0.2,
-    port: int = DEFAULT_PORT
+    port: int = DEFAULT_PORT,
+    timeout: int = 300,
 ) -> Dict[str, Any]:
     """
     Direct synchronous completion query to the local X-Estal model.
@@ -199,7 +218,7 @@ def query_local_model(
         "temperature": temperature,
     }
 
-    resp = requests.post(url, json=payload, timeout=120)
+    resp = requests.post(url, json=payload, timeout=timeout)
     if resp.status_code != 200:
         raise RuntimeError(f"Local server returned HTTP {resp.status_code}: {resp.text[:300]}")
 
@@ -226,7 +245,8 @@ def stream_local_model(
     messages: List[Dict[str, str]],
     max_tokens: int = 1000000,
     temperature: float = 0.2,
-    port: int = DEFAULT_PORT
+    port: int = DEFAULT_PORT,
+    timeout: int = 300,
 ) -> Generator[str, None, None]:
     """
     Stream clean response tokens directly from local X-Estal model.
@@ -246,7 +266,7 @@ def stream_local_model(
     in_thinking_block = False
     buffer = ""
 
-    with requests.post(url, json=payload, stream=True, timeout=120) as resp:
+    with requests.post(url, json=payload, stream=True, timeout=timeout) as resp:
         for line in resp.iter_lines():
             if not line:
                 continue

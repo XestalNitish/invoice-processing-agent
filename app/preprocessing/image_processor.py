@@ -126,11 +126,12 @@ def _adaptive_binarise(img: np.ndarray) -> np.ndarray:
     return cv2.cvtColor(binary, cv2.COLOR_GRAY2BGR)
 
 
-def _process_single_image(img_bgr: np.ndarray) -> np.ndarray:
-    """Apply the full preprocessing pipeline to a single page image."""
+def _process_single_image(img_bgr: np.ndarray, binarize: bool = False) -> np.ndarray:
+    """Apply the preprocessing pipeline to a single page image."""
     img = _deskew(img_bgr)
     img = _enhance_contrast(img)
-    img = _adaptive_binarise(img)
+    if binarize:
+        img = _adaptive_binarise(img)
     return img
 
 

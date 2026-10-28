@@ -18,7 +18,7 @@ import json
 import logging
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -293,7 +293,7 @@ def run_evaluation(mode: str = "text") -> Dict[str, Any]:
     validation_pass_pct = round((validation_pass_count / num_docs) * 100, 1)
 
     eval_summary = {
-        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "model_evaluated": "Spark-X2.5-4B (Q4_K_M GGUF, llama-server on CPU)",
         "hardware": "Intel Core i5-10400 (6 Cores / 12 Threads), 16GB RAM",
         "total_documents": num_docs,

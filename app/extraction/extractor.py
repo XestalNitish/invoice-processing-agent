@@ -316,6 +316,13 @@ def _normalize_extracted_json(data: Dict[str, Any]) -> Dict[str, Any]:
         if alias_date:
             d["invoice_date"] = alias_date
 
+    # Clean and uppercase GSTINs (remove any OCR whitespace artifacts)
+    for gstin_key in ["vendor_gstin", "buyer_gstin"]:
+        val = d.get(gstin_key)
+        if isinstance(val, str):
+            cleaned = "".join(val.split()).upper()
+            d[gstin_key] = cleaned if len(cleaned) == 15 else (cleaned or None)
+
     # 4. Tax Breakup normalization
     tb = d.get("tax_breakup")
     if not isinstance(tb, dict):

@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import json
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Optional
 
 from sqlalchemy.orm import Session
@@ -52,6 +52,7 @@ def _record_to_orm(record: InvoiceRecord) -> InvoiceRecordORM:
         reviewer_notes=record.reviewer_notes,
         export_csv_path=record.export_csv_path,
         export_tally_xml_path=record.export_tally_xml_path,
+        updated_at=record.updated_at or datetime.now(timezone.utc),
     )
 
 
@@ -61,7 +62,10 @@ def _orm_to_record(orm: InvoiceRecordORM) -> InvoiceRecord:
     extraction = None
     if orm.extraction_json:
         try:
-            extraction = InvoiceExtraction.model_validate(orm.extraction_json)
+            raw_data = orm.extraction_json
+            if isinstance(raw_data, str):
+                raw_data = json.loads(raw_data)
+            extraction = InvoiceExtraction.model_validate(raw_data)
         except Exception as exc:
             logger.warning("Failed to deserialise extraction for %s: %s", orm.document_id, exc)
 
@@ -87,8 +91,8 @@ def _orm_to_record(orm: InvoiceRecordORM) -> InvoiceRecord:
         reviewer_notes=orm.reviewer_notes,
         export_csv_path=orm.export_csv_path,
         export_tally_xml_path=orm.export_tally_xml_path,
-        created_at=orm.created_at or datetime.utcnow(),
-        updated_at=orm.updated_at or datetime.utcnow(),
+        created_at=orm.created_at or datetime.now(timezone.utc),
+        updated_at=orm.updated_at or datetime.now(timezone.utc),
     )
 
 
@@ -131,6 +135,7 @@ def update_invoice_record(session: Session, record: InvoiceRecord) -> InvoiceRec
         if col.name in ("id", "created_at"):
             continue
         setattr(orm_existing, col.name, getattr(new_orm, col.name))
+    orm_existing.updated_at = datetime.now(timezone.utc)
 
     session.flush()
     logger.info("Updated invoice record %s → status=%s", record.id, record.status)

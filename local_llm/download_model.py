@@ -72,12 +72,17 @@ def is_model_downloaded(model_key: str = DEFAULT_MODEL_KEY, custom_dir: Optional
     
     # Check alternate search paths across disks
     filename = MODEL_REGISTRY.get(model_key.lower(), MODEL_REGISTRY[DEFAULT_MODEL_KEY])["filename"]
-    for search_dir in [
-        Path("D:/project3/models"),
-        Path("D:/agentic ai/models"),
-        Path("D:/local llm/models"),
-        Path("D:/project2/models"),
-    ]:
+    search_dirs = [MODELS_DIR]
+    if sys.platform == "win32":
+        search_dirs.extend([
+            Path("D:/project3/models"),
+            Path("D:/agentic ai/models"),
+            Path("D:/local llm/models"),
+            Path("D:/project2/models"),
+        ])
+    for search_dir in search_dirs:
+        if not search_dir.exists():
+            continue
         candidate = search_dir / filename
         if candidate.exists() and candidate.stat().st_size > 100_000_000:
             return True
@@ -98,12 +103,15 @@ def resolve_model_file(model_key: str = DEFAULT_MODEL_KEY) -> Optional[Path]:
         return p
 
     # 2. Search other local drive locations
-    for search_dir in [
-        Path("D:/project3/models"),
-        Path("D:/agentic ai/models"),
-        Path("D:/local llm/models"),
-        Path("D:/project2/models"),
-    ]:
+    search_dirs = []
+    if sys.platform == "win32":
+        search_dirs.extend([
+            Path("D:/project3/models"),
+            Path("D:/agentic ai/models"),
+            Path("D:/local llm/models"),
+            Path("D:/project2/models"),
+        ])
+    for search_dir in search_dirs:
         if search_dir.exists():
             for sub in search_dir.glob(f"**/{filename}"):
                 if sub.stat().st_size > 100_000_000:

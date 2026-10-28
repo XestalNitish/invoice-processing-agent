@@ -20,7 +20,7 @@ from __future__ import annotations
 
 import hashlib
 import uuid
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from typing import Annotated, Dict, List, Optional
 
 from pydantic import (
@@ -273,8 +273,8 @@ class InvoiceRecord(BaseModel):
     reviewer_notes: Optional[str] = None
 
     # Timestamps
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
     # Export paths
     export_csv_path: Optional[str] = None

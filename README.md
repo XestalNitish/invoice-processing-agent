@@ -58,7 +58,7 @@ cd "d:\invoice agent"
 .\.venv\Scripts\activate
 
 # Install dependencies (if not already installed)
-pip install -r Requirements.txt
+pip install -r requirements.txt
 ```
 
 ### 2. Run the Evaluation Suite (Benchmark Local Model)
@@ -111,6 +111,20 @@ Tested with local quantized weights (`Spark-X2.5-4B-Q4_K_M.gguf`) on Intel Core 
 | **Zero-Edit Invoices Rate** | **100.0%** | > 80.0% |
 | **Operational Cost** | **$0.00** | $0.00 (100% Free / On-Premise) |
 | **Memory Footprint** | **~4.8 GB** | Fits comfortably within 16GB RAM |
+
+---
+
+## 🌟 Public AI Project Ecosystem (by Nitish Kumar)
+
+This engine is part of the AI & Autonomous Agent Suite created by **Nitish Kumar** ([@XestalNitish](https://github.com/XestalNitish)):
+
+- **🔬 [Autonomous Research Agent](https://xestal-research-agent-by-x-estal-nitish.streamlit.app/)**: Literature & web intelligence synthesizer.
+- **₿ [Bitcoin Price Predictor](https://x-estal-nitish-bit-coin-price-predictor.streamlit.app)**: Deep learning quantitative time-series forecasting with LSTM networks.
+- **🧠 [Brain Tumor Classifier](https://brain-tumor-classifier-by-x-estal-nitish.streamlit.app)**: Computer vision MRI diagnostic scanner using deep CNNs.
+- **⚡ [Code Dev Agent](https://code-dev-agent-by-x-estal-nitish.streamlit.app)**: Autonomous programming agent with sandbox test execution and self-debugging.
+- **🧾 [GST Invoice Processing Agent](https://github.com/XestalNitish/invoice-processing-agent)**: Private on-premise GST document engine with local LLM, Modulo-36 GST checksums, and Tally XML export.
+
+Connect: [GitHub](https://github.com/XestalNitish) • [LinkedIn](https://www.linkedin.com/in/nitish-kumar-33714642b/) • [Instagram](https://www.instagram.com/x_estal_nitish)
 
 ---
 

@@ -20,7 +20,7 @@ import os
 import shutil
 import uuid
 from contextlib import asynccontextmanager
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -145,7 +145,7 @@ def health_check():
         local_llm_online=is_server_alive(),
         local_llm_capable=is_local_capable(),
         database_connected=db_ok,
-        timestamp=datetime.utcnow().isoformat() + "Z",
+        timestamp=datetime.now(timezone.utc).isoformat(),
     )
 
 
@@ -249,7 +249,8 @@ def list_invoices(
                 if status_filter:
                     query = query.filter(InvoiceRecordORM.status == status_filter)
                 query = query.order_by(InvoiceRecordORM.created_at.desc()).limit(limit)
-                records = [InvoiceRecord.model_validate(o.__dict__) for o in query.all()]
+                from app.db.crud import _orm_to_record
+                records = [_orm_to_record(o) for o in query.all()]
             return [r.model_dump() for r in records]
     except Exception as e:
         return {"records": [], "note": f"DB query fallback: {str(e)}"}
@@ -290,7 +291,7 @@ def submit_review(document_id: str, review: ReviewSubmission):
             record.status = review.decision.upper()
             record.human_reviewed = True
             record.reviewed_by = review.reviewed_by
-            record.reviewed_at = datetime.utcnow()
+            record.reviewed_at = datetime.now(timezone.utc)
             record.reviewer_notes = review.notes
             record.needs_human_review = False
 
