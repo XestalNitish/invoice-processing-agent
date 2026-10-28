@@ -1,0 +1,339 @@
+{
+  "timestamp": "2026-10-28T10:25:37.858216Z",
+  "model_evaluated": "Spark-X2.5-4B (Q4_K_M GGUF, llama-server on CPU)",
+  "hardware": "Intel Core i5-10400 (6 Cores / 12 Threads), 16GB RAM",
+  "total_documents": 5,
+  "zero_edit_invoices_pct": 100.0,
+  "schema_compliance_pct": 100.0,
+  "deterministic_validator_pass_pct": 20.0,
+  "avg_latency_seconds": 96.86,
+  "cost_per_document": "$0.00 (Offline, zero API calls)",
+  "field_accuracies": {
+    "vendor_name": 100.0,
+    "vendor_gstin": 100.0,
+    "invoice_number": 100.0,
+    "invoice_date": 100.0,
+    "taxable_subtotal": 100.0,
+    "cgst_amount": 100.0,
+    "sgst_amount": 100.0,
+    "igst_amount": 100.0,
+    "grand_total": 100.0,
+    "line_items_count": 100.0
+  },
+  "detailed_results": [
+    {
+      "id": "INV_001_MAH_INTRASTATE",
+      "description": "Maharashtra Intra-State B2B Electronics (CGST + SGST)",
+      "schema_valid": true,
+      "zero_edits": true,
+      "latency_seconds": 113.86,
+      "tokens_per_sec": 6.1,
+      "field_scores": {
+        "vendor_name": {
+          "score": 100.0,
+          "match": true
+        },
+        "vendor_gstin": {
+          "extracted": "27AABCT8842K1ZU",
+          "gt": "27AABCT8842K1ZU",
+          "match": true
+        },
+        "invoice_number": {
+          "extracted": "TF/2024-25/0412",
+          "gt": "TF/2024-25/0412",
+          "match": true
+        },
+        "invoice_date": {
+          "extracted": "2024-04-15",
+          "gt": "2024-04-15",
+          "match": true
+        },
+        "taxable_subtotal": {
+          "extracted": 79300.0,
+          "gt": 79300.0,
+          "match": true
+        },
+        "cgst_amount": {
+          "extracted": 7137.0,
+          "gt": 7137.0,
+          "match": true
+        },
+        "sgst_amount": {
+          "extracted": 7137.0,
+          "gt": 7137.0,
+          "match": true
+        },
+        "igst_amount": {
+          "extracted": 0.0,
+          "gt": 0.0,
+          "match": true
+        },
+        "grand_total": {
+          "extracted": 93574.0,
+          "gt": 93574.0,
+          "match": true
+        },
+        "line_items_count": {
+          "extracted": 2,
+          "gt": 2,
+          "match": true
+        }
+      },
+      "validation_errors": [
+        "Invalid Vendor GSTIN '27AABCT8842K1ZU' (failed regex or Modulo-36 checksum)."
+      ],
+      "parse_error": null
+    },
+    {
+      "id": "INV_002_DEL_INTERSTATE",
+      "description": "Delhi to Karnataka Inter-State Supply (IGST)",
+      "schema_valid": true,
+      "zero_edits": true,
+      "latency_seconds": 88.48,
+      "tokens_per_sec": 6.3,
+      "field_scores": {
+        "vendor_name": {
+          "score": 100.0,
+          "match": true
+        },
+        "vendor_gstin": {
+          "extracted": "07AABCB4412M1Z8",
+          "gt": "07AABCB4412M1Z8",
+          "match": true
+        },
+        "invoice_number": {
+          "extracted": "BIS/24/0988",
+          "gt": "BIS/24/0988",
+          "match": true
+        },
+        "invoice_date": {
+          "extracted": "2024-05-20",
+          "gt": "2024-05-20",
+          "match": true
+        },
+        "taxable_subtotal": {
+          "extracted": 17000.0,
+          "gt": 17000.0,
+          "match": true
+        },
+        "cgst_amount": {
+          "extracted": 0.0,
+          "gt": 0.0,
+          "match": true
+        },
+        "sgst_amount": {
+          "extracted": 0.0,
+          "gt": 0.0,
+          "match": true
+        },
+        "igst_amount": {
+          "extracted": 3060.0,
+          "gt": 3060.0,
+          "match": true
+        },
+        "grand_total": {
+          "extracted": 20060.0,
+          "gt": 20060.0,
+          "match": true
+        },
+        "line_items_count": {
+          "extracted": 1,
+          "gt": 1,
+          "match": true
+        }
+      },
+      "validation_errors": [
+        "Invalid Vendor GSTIN '07AABCB4412M1Z8' (failed regex or Modulo-36 checksum)."
+      ],
+      "parse_error": null
+    },
+    {
+      "id": "INV_003_SERVICE_CONSULTING",
+      "description": "Professional IT Services Retainer (SAC 9983, 18% GST)",
+      "schema_valid": true,
+      "zero_edits": true,
+      "latency_seconds": 88.67,
+      "tokens_per_sec": 6.3,
+      "field_scores": {
+        "vendor_name": {
+          "score": 100.0,
+          "match": true
+        },
+        "vendor_gstin": {
+          "extracted": "06AABCC9911D1ZX",
+          "gt": "06AABCC9911D1ZX",
+          "match": true
+        },
+        "invoice_number": {
+          "extracted": "CMT-SRV-2024-11",
+          "gt": "CMT-SRV-2024-11",
+          "match": true
+        },
+        "invoice_date": {
+          "extracted": "2024-06-01",
+          "gt": "2024-06-01",
+          "match": true
+        },
+        "taxable_subtotal": {
+          "extracted": 60000.0,
+          "gt": 60000.0,
+          "match": true
+        },
+        "cgst_amount": {
+          "extracted": 5400.0,
+          "gt": 5400.0,
+          "match": true
+        },
+        "sgst_amount": {
+          "extracted": 5400.0,
+          "gt": 5400.0,
+          "match": true
+        },
+        "igst_amount": {
+          "extracted": 0.0,
+          "gt": 0.0,
+          "match": true
+        },
+        "grand_total": {
+          "extracted": 70800.0,
+          "gt": 70800.0,
+          "match": true
+        },
+        "line_items_count": {
+          "extracted": 1,
+          "gt": 1,
+          "match": true
+        }
+      },
+      "validation_errors": [
+        "Invalid Vendor GSTIN '06AABCC9911D1ZX' (failed regex or Modulo-36 checksum)."
+      ],
+      "parse_error": null
+    },
+    {
+      "id": "INV_004_KIRANA_UNREGISTERED",
+      "description": "Small Kirana Store Bill (No GSTIN, Small Vendor)",
+      "schema_valid": true,
+      "zero_edits": true,
+      "latency_seconds": 90.12,
+      "tokens_per_sec": 6.5,
+      "field_scores": {
+        "vendor_name": {
+          "score": 100.0,
+          "match": true
+        },
+        "vendor_gstin": {
+          "extracted": null,
+          "gt": null,
+          "match": true
+        },
+        "invoice_number": {
+          "extracted": "GGS-942",
+          "gt": "GGS-942",
+          "match": true
+        },
+        "invoice_date": {
+          "extracted": "2024-06-10",
+          "gt": "2024-06-10",
+          "match": true
+        },
+        "taxable_subtotal": {
+          "extracted": 1580.0,
+          "gt": 1580.0,
+          "match": true
+        },
+        "cgst_amount": {
+          "extracted": 0.0,
+          "gt": 0.0,
+          "match": true
+        },
+        "sgst_amount": {
+          "extracted": 0.0,
+          "gt": 0.0,
+          "match": true
+        },
+        "igst_amount": {
+          "extracted": 0.0,
+          "gt": 0.0,
+          "match": true
+        },
+        "grand_total": {
+          "extracted": 1580.0,
+          "gt": 1580.0,
+          "match": true
+        },
+        "line_items_count": {
+          "extracted": 2,
+          "gt": 2,
+          "match": true
+        }
+      },
+      "validation_errors": [],
+      "parse_error": null
+    },
+    {
+      "id": "INV_005_ROUNDOFF_MULTIITEM",
+      "description": "Commercial Stationery with Fractional Discount and Round Off",
+      "schema_valid": true,
+      "zero_edits": true,
+      "latency_seconds": 103.18,
+      "tokens_per_sec": 6.4,
+      "field_scores": {
+        "vendor_name": {
+          "score": 100.0,
+          "match": true
+        },
+        "vendor_gstin": {
+          "extracted": "29AABCR5511A1ZZ",
+          "gt": "29AABCR5511A1ZZ",
+          "match": true
+        },
+        "invoice_number": {
+          "extracted": "RSM/2024/782",
+          "gt": "RSM/2024/782",
+          "match": true
+        },
+        "invoice_date": {
+          "extracted": "2024-06-25",
+          "gt": "2024-06-25",
+          "match": true
+        },
+        "taxable_subtotal": {
+          "extracted": 5175.0,
+          "gt": 5175.0,
+          "match": true
+        },
+        "cgst_amount": {
+          "extracted": 265.5,
+          "gt": 265.5,
+          "match": true
+        },
+        "sgst_amount": {
+          "extracted": 265.5,
+          "gt": 265.5,
+          "match": true
+        },
+        "igst_amount": {
+          "extracted": 0.0,
+          "gt": 0.0,
+          "match": true
+        },
+        "grand_total": {
+          "extracted": 5976.0,
+          "gt": 5976.0,
+          "match": true
+        },
+        "line_items_count": {
+          "extracted": 2,
+          "gt": 2,
+          "match": true
+        }
+      },
+      "validation_errors": [
+        "Invalid Vendor GSTIN '29AABCR5511A1ZZ' (failed regex or Modulo-36 checksum).",
+        "Computed grand total (5706.0) != extracted grand_total (5976.0)."
+      ],
+      "parse_error": null
+    }
+  ]
+}

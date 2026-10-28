@@ -1,0 +1,23 @@
+TAX INVOICE FOR SERVICES
+Service Provider: CLOUDMIND TECHNOLOGIES
+Address: Level 4, Cyber City, Gurugram, Haryana - 122002
+GSTIN: 06AABCC9911D1ZX | Tel: +91 124 456 7890
+
+Client: STARLIGHT MEDIA WORKS
+Address: Sector 18, Gurugram, Haryana
+GSTIN: 06AAACS5544B1ZV
+
+Invoice No: CMT-SRV-2024-11
+Date: 2024-06-01
+Place of Supply: 06 (Haryana)
+
+Description of Service:
+1. Cloud Architecture & DevOps Consulting Retainer (May 2024)
+   SAC Code: 9983 | Qty: 1 Month | Rate: 60,000.00 | Taxable: 60,000.00 | Total: 70,800.00
+
+Tax Calculation:
+Taxable Value: 60,000.00
+CGST 9%: 5,400.00
+SGST 9%: 5,400.00
+IGST: 0.00
+Total Amount Payable: INR 70,800.00

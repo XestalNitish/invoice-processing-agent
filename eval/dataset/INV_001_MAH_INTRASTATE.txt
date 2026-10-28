@@ -1,0 +1,27 @@
+================================================================================
+                                TAX INVOICE
+================================================================================
+Seller: TECHFLOW SOLUTIONS PVT LTD
+Address: Plot 42, MIDC Industrial Area, Andheri East, Mumbai, Maharashtra - 400093
+GSTIN: 27AABCT8842K1ZU | Phone: +91 22 2834 9000
+
+Buyer: APEX DATA SYSTEMS LLP
+Address: Office 502, Commerce Center, Pune, Maharashtra - 411004
+GSTIN: 27AAACA1234D1ZF
+
+Invoice No: TF/2024-25/0412              Invoice Date: 2024-04-15
+Place of Supply: 27 (Maharashtra)         State Code: 27
+
+--------------------------------------------------------------------------------
+Item Description                  HSN    Qty   Rate        Taxable     Total (INR)
+--------------------------------------------------------------------------------
+1. Samsung 980 Pro 1TB NVMe SSD   8471   5 Nos 8,500.00    42,500.00   50,150.00
+2. Corsair Vengeance 32GB DDR5    8473   4 Nos 9,200.00    36,800.00   43,424.00
+--------------------------------------------------------------------------------
+Subtotal (Taxable Value):                                    INR 79,300.00
+Central GST (CGST @ 9%):                                     INR  7,137.00
+State GST (SGST @ 9%):                                       INR  7,137.00
+Integrated GST (IGST @ 0%):                                  INR      0.00
+Round Off:                                                   INR      0.00
+GRAND TOTAL:                                                 INR 93,574.00
+================================================================================

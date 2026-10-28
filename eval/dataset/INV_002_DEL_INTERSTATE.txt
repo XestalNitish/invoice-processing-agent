@@ -1,0 +1,22 @@
+TAX INVOICE (INTER-STATE)
+Vendor: BHARAT INDUSTRIAL SPARES
+Address: 88 Industrial Estate, Okhla Phase 3, New Delhi - 110020
+GSTIN: 07AABCB4412M1Z8 | Phone: +91 11 2681 4400
+
+Bill To: DECCAN PRECISION ENGINEERING
+Address: Peenya Industrial Area, Bengaluru, Karnataka - 560058
+GSTIN: 29AABCD9876P1Z3
+
+Invoice Number: BIS/24/0988
+Invoice Date: 2024-05-20
+Place of Supply: 29 (Karnataka)
+
+Line Items:
+1. Heavy Duty Industrial Bearings 6205 | HSN: 8482 | Qty: 50 Pcs | Rate: 340.00 | Taxable: 17000.00 | IGST: 18% | Total: 20060.00
+
+Tax Summary:
+Taxable Subtotal: INR 17,000.00
+CGST: 0.00
+SGST: 0.00
+IGST @ 18%: 3,060.00
+Grand Total: INR 20,060.00

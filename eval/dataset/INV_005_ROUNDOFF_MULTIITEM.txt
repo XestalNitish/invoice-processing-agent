@@ -1,0 +1,23 @@
+TAX INVOICE
+ROYAL STATIONERY MART
+Address: 22 M.G. Road, Fort, Bengaluru, Karnataka - 560001
+GSTIN: 29AABCR5511A1ZZ | Tel: +91 80 2221 3344
+
+Customer: TECH TALENT INC
+Address: Indiranagar, Bengaluru | GSTIN: 29AAACT9012K1Z9
+
+Invoice No: RSM/2024/782
+Date: 2024-06-25
+Place of Supply: 29 (Karnataka)
+
+Items:
+1. Whiteboard Markers Assorted Box of 12 | HSN: 9608 | Qty: 10 Boxes | Rate: 320.00 | Disc: 200.00 | Taxable: 3000.00 | GST: 18% | Total: 3540.00
+2. Spiral Bound Project Diaries | HSN: 4820 | Qty: 15 Pcs | Rate: 145.00 | Disc: 0.00 | Taxable: 2175.00 | GST: 12% | Total: 2436.00
+
+Tax Breakdown:
+Taxable Value: 5,175.00
+CGST (9% on markers + 6% on diaries): 265.50
+SGST (9% on markers + 6% on diaries): 265.50
+IGST: 0.00
+Round off: 0.00
+GRAND TOTAL: INR 5,976.00

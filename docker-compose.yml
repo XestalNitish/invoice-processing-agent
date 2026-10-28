@@ -1,0 +1,85 @@
+version: "3.8"
+
+services:
+  # ─────────────────────────────────────────────────────────────
+  # 1. PostgreSQL Database with pgvector extension
+  # ─────────────────────────────────────────────────────────────
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: invoice_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-invoice_db}
+      POSTGRES_USER: ${POSTGRES_USER:-invoice_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-invoice_pass}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U invoice_user -d invoice_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - invoice_net
+
+  # ─────────────────────────────────────────────────────────────
+  # 2. FastAPI Backend API Engine
+  # ─────────────────────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: invoice_api
+    restart: unless-stopped
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 2
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+psycopg://invoice_user:invoice_pass@db:5432/invoice_db
+      - LLM_PROVIDER=${LLM_PROVIDER:-local}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - CONFIDENCE_REVIEW_THRESHOLD=0.85
+      - TAX_ARITHMETIC_TOLERANCE=1.00
+    volumes:
+      - ./storage:/app/storage
+      - ./exports:/app/exports
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - invoice_net
+
+  # ─────────────────────────────────────────────────────────────
+  # 3. Streamlit Human-in-the-Loop Review Dashboard
+  # ─────────────────────────────────────────────────────────────
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: invoice_ui
+    restart: unless-stopped
+    command: streamlit run ui/review_app.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    environment:
+      - API_BASE_URL=http://api:8000
+      - DATABASE_URL=postgresql+psycopg://invoice_user:invoice_pass@db:5432/invoice_db
+    volumes:
+      - ./storage:/app/storage
+      - ./exports:/app/exports
+    depends_on:
+      - api
+    networks:
+      - invoice_net
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  invoice_net:
+    driver: bridge

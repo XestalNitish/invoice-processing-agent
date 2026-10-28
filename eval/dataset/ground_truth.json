@@ -1,0 +1,240 @@
+{
+  "INV_001_MAH_INTRASTATE": {
+    "description": "Maharashtra Intra-State B2B Electronics (CGST + SGST)",
+    "txt_path": "D:\\invoice agent\\eval\\dataset\\INV_001_MAH_INTRASTATE.txt",
+    "img_path": "D:\\invoice agent\\eval\\dataset\\INV_001_MAH_INTRASTATE.png",
+    "ground_truth": {
+      "vendor_name": "TECHFLOW SOLUTIONS PVT LTD",
+      "vendor_address": "Plot 42, MIDC Industrial Area, Andheri East, Mumbai, Maharashtra - 400093",
+      "vendor_gstin": "27AABCT8842K1ZU",
+      "vendor_phone": "+91 22 2834 9000",
+      "buyer_name": "APEX DATA SYSTEMS LLP",
+      "buyer_gstin": "27AAACA1234D1ZF",
+      "buyer_address": "Office 502, Commerce Center, Pune, Maharashtra - 411004",
+      "invoice_number": "TF/2024-25/0412",
+      "invoice_date": "2024-04-15",
+      "place_of_supply_state_code": "27",
+      "is_inter_state": false,
+      "line_items": [
+        {
+          "description": "Samsung 980 Pro 1TB NVMe SSD",
+          "hsn_sac": "8471",
+          "quantity": 5.0,
+          "unit": "Nos",
+          "unit_price": 8500.0,
+          "discount_amount": 0.0,
+          "tax_rate_percent": 18.0,
+          "taxable_amount": 42500.0,
+          "total_amount": 50150.0
+        },
+        {
+          "description": "Corsair Vengeance 32GB DDR5 RAM",
+          "hsn_sac": "8473",
+          "quantity": 4.0,
+          "unit": "Nos",
+          "unit_price": 9200.0,
+          "discount_amount": 0.0,
+          "tax_rate_percent": 18.0,
+          "taxable_amount": 36800.0,
+          "total_amount": 43424.0
+        }
+      ],
+      "tax_breakup": {
+        "taxable_subtotal": 79300.0,
+        "cgst_amount": 7137.0,
+        "sgst_amount": 7137.0,
+        "igst_amount": 0.0,
+        "cess_amount": 0.0,
+        "tds_amount": 0.0,
+        "round_off": 0.0,
+        "grand_total": 93574.0
+      }
+    }
+  },
+  "INV_002_DEL_INTERSTATE": {
+    "description": "Delhi to Karnataka Inter-State Supply (IGST)",
+    "txt_path": "D:\\invoice agent\\eval\\dataset\\INV_002_DEL_INTERSTATE.txt",
+    "img_path": "D:\\invoice agent\\eval\\dataset\\INV_002_DEL_INTERSTATE.png",
+    "ground_truth": {
+      "vendor_name": "BHARAT INDUSTRIAL SPARES",
+      "vendor_address": "88 Industrial Estate, Okhla Phase 3, New Delhi - 110020",
+      "vendor_gstin": "07AABCB4412M1Z8",
+      "vendor_phone": "+91 11 2681 4400",
+      "buyer_name": "DECCAN PRECISION ENGINEERING",
+      "buyer_gstin": "29AABCD9876P1Z3",
+      "buyer_address": "Peenya Industrial Area, Bengaluru, Karnataka - 560058",
+      "invoice_number": "BIS/24/0988",
+      "invoice_date": "2024-05-20",
+      "place_of_supply_state_code": "29",
+      "is_inter_state": true,
+      "line_items": [
+        {
+          "description": "Heavy Duty Industrial Bearings 6205",
+          "hsn_sac": "8482",
+          "quantity": 50.0,
+          "unit": "Pcs",
+          "unit_price": 340.0,
+          "discount_amount": 0.0,
+          "tax_rate_percent": 18.0,
+          "taxable_amount": 17000.0,
+          "total_amount": 20060.0
+        }
+      ],
+      "tax_breakup": {
+        "taxable_subtotal": 17000.0,
+        "cgst_amount": 0.0,
+        "sgst_amount": 0.0,
+        "igst_amount": 3060.0,
+        "cess_amount": 0.0,
+        "tds_amount": 0.0,
+        "round_off": 0.0,
+        "grand_total": 20060.0
+      }
+    }
+  },
+  "INV_003_SERVICE_CONSULTING": {
+    "description": "Professional IT Services Retainer (SAC 9983, 18% GST)",
+    "txt_path": "D:\\invoice agent\\eval\\dataset\\INV_003_SERVICE_CONSULTING.txt",
+    "img_path": "D:\\invoice agent\\eval\\dataset\\INV_003_SERVICE_CONSULTING.png",
+    "ground_truth": {
+      "vendor_name": "CLOUDMIND TECHNOLOGIES",
+      "vendor_address": "Level 4, Cyber City, Gurugram, Haryana - 122002",
+      "vendor_gstin": "06AABCC9911D1ZX",
+      "vendor_phone": "+91 124 456 7890",
+      "buyer_name": "STARLIGHT MEDIA WORKS",
+      "buyer_gstin": "06AAACS5544B1ZV",
+      "buyer_address": "Sector 18, Gurugram, Haryana",
+      "invoice_number": "CMT-SRV-2024-11",
+      "invoice_date": "2024-06-01",
+      "place_of_supply_state_code": "06",
+      "is_inter_state": false,
+      "line_items": [
+        {
+          "description": "Cloud Architecture & DevOps Consulting Retainer (May 2024)",
+          "hsn_sac": "9983",
+          "quantity": 1.0,
+          "unit": "Month",
+          "unit_price": 60000.0,
+          "discount_amount": 0.0,
+          "tax_rate_percent": 18.0,
+          "taxable_amount": 60000.0,
+          "total_amount": 70800.0
+        }
+      ],
+      "tax_breakup": {
+        "taxable_subtotal": 60000.0,
+        "cgst_amount": 5400.0,
+        "sgst_amount": 5400.0,
+        "igst_amount": 0.0,
+        "cess_amount": 0.0,
+        "tds_amount": 0.0,
+        "round_off": 0.0,
+        "grand_total": 70800.0
+      }
+    }
+  },
+  "INV_004_KIRANA_UNREGISTERED": {
+    "description": "Small Kirana Store Bill (No GSTIN, Small Vendor)",
+    "txt_path": "D:\\invoice agent\\eval\\dataset\\INV_004_KIRANA_UNREGISTERED.txt",
+    "img_path": "D:\\invoice agent\\eval\\dataset\\INV_004_KIRANA_UNREGISTERED.png",
+    "ground_truth": {
+      "vendor_name": "GUPTA GENERAL STORE",
+      "vendor_address": "Shop No 3, Main Market, Laxmi Nagar, Delhi - 110092",
+      "vendor_gstin": null,
+      "vendor_phone": "+91 98112 34567",
+      "buyer_name": "SUNIL KUMAR",
+      "buyer_gstin": null,
+      "buyer_address": "Laxmi Nagar, Delhi",
+      "invoice_number": "GGS-942",
+      "invoice_date": "2024-06-10",
+      "place_of_supply_state_code": "07",
+      "is_inter_state": false,
+      "line_items": [
+        {
+          "description": "Basmati Rice 5kg Bag",
+          "hsn_sac": "1006",
+          "quantity": 2.0,
+          "unit": "Bags",
+          "unit_price": 550.0,
+          "discount_amount": 0.0,
+          "tax_rate_percent": 0.0,
+          "taxable_amount": 1100.0,
+          "total_amount": 1100.0
+        },
+        {
+          "description": "Sunflower Cooking Oil 1L",
+          "hsn_sac": "1512",
+          "quantity": 3.0,
+          "unit": "Bottles",
+          "unit_price": 160.0,
+          "discount_amount": 0.0,
+          "tax_rate_percent": 0.0,
+          "taxable_amount": 480.0,
+          "total_amount": 480.0
+        }
+      ],
+      "tax_breakup": {
+        "taxable_subtotal": 1580.0,
+        "cgst_amount": 0.0,
+        "sgst_amount": 0.0,
+        "igst_amount": 0.0,
+        "cess_amount": 0.0,
+        "tds_amount": 0.0,
+        "round_off": 0.0,
+        "grand_total": 1580.0
+      }
+    }
+  },
+  "INV_005_ROUNDOFF_MULTIITEM": {
+    "description": "Commercial Stationery with Fractional Discount and Round Off",
+    "txt_path": "D:\\invoice agent\\eval\\dataset\\INV_005_ROUNDOFF_MULTIITEM.txt",
+    "img_path": "D:\\invoice agent\\eval\\dataset\\INV_005_ROUNDOFF_MULTIITEM.png",
+    "ground_truth": {
+      "vendor_name": "ROYAL STATIONERY MART",
+      "vendor_address": "22 M.G. Road, Fort, Bengaluru, Karnataka - 560001",
+      "vendor_gstin": "29AABCR5511A1ZZ",
+      "vendor_phone": "+91 80 2221 3344",
+      "buyer_name": "TECH TALENT INC",
+      "buyer_gstin": "29AAACT9012K1Z9",
+      "buyer_address": "Indiranagar, Bengaluru",
+      "invoice_number": "RSM/2024/782",
+      "invoice_date": "2024-06-25",
+      "place_of_supply_state_code": "29",
+      "is_inter_state": false,
+      "line_items": [
+        {
+          "description": "Whiteboard Markers Assorted Box of 12",
+          "hsn_sac": "9608",
+          "quantity": 10.0,
+          "unit": "Boxes",
+          "unit_price": 320.0,
+          "discount_amount": 200.0,
+          "tax_rate_percent": 18.0,
+          "taxable_amount": 3000.0,
+          "total_amount": 3540.0
+        },
+        {
+          "description": "Spiral Bound Project Diaries",
+          "hsn_sac": "4820",
+          "quantity": 15.0,
+          "unit": "Pcs",
+          "unit_price": 145.0,
+          "discount_amount": 0.0,
+          "tax_rate_percent": 12.0,
+          "taxable_amount": 2175.0,
+          "total_amount": 2436.0
+        }
+      ],
+      "tax_breakup": {
+        "taxable_subtotal": 5175.0,
+        "cgst_amount": 265.5,
+        "sgst_amount": 265.5,
+        "igst_amount": 0.0,
+        "cess_amount": 0.0,
+        "tds_amount": 0.0,
+        "round_off": 0.0,
+        "grand_total": 5976.0
+      }
+    }
+  }
+}

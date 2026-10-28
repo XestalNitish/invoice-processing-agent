@@ -1,0 +1,15 @@
+RETAIL BILL / CASH MEMO
+GUPTA GENERAL STORE
+Shop No 3, Main Market, Laxmi Nagar, Delhi - 110092
+Phone: +91 98112 34567 (Composition / Unregistered Dealer)
+
+Customer: SUNIL KUMAR, Laxmi Nagar, Delhi
+Bill No: GGS-942
+Bill Date: 2024-06-10
+
+1. Basmati Rice 5kg Bag - Qty: 2 Bags @ 550.00 = 1,100.00
+2. Sunflower Cooking Oil 1L - Qty: 3 Bottles @ 160.00 = 480.00
+
+Taxable Subtotal: 1,580.00
+Tax: 0.00
+NET AMOUNT: 1,580.00

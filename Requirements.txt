@@ -1,0 +1,48 @@
+# ===== Invoice Agent: requirements.txt =====
+# Install: pip install -r requirements.txt
+# Python 3.11 recommended
+
+# --- Core schema + settings ---
+pydantic>=2.0
+pydantic-settings>=2.0  # BaseSettings for .env loading
+pytest>=8.0
+pytest-mock>=3.0        # monkeypatching in tests
+
+# --- Config ---
+python-dotenv          # .env se API keys padhne ke liye
+
+# --- Image / PDF preprocessing ---
+pillow                 # image open, resize, rotate
+opencv-python-headless # deskew, contrast
+pymupdf                # PDF -> image (use `import pymupdf`, not `import fitz`)
+rapidocr-onnxruntime   # ultra-fast local CPU OCR for scanned invoices
+
+# --- Agent workflow ---
+langgraph
+langgraph-checkpoint-postgres   # graph pause/resume Postgres mein save karne ke liye
+langchain
+langchain-core
+langchain-openai       # local LLM via OpenAI-compatible API
+
+# --- Vision LLM (uncomment the one you use) ---
+anthropic              # Claude (default)
+# openai               # GPT-4o
+# google-genai         # Gemini
+
+# --- Backend API ---
+fastapi
+uvicorn[standard]
+python-multipart       # file upload ke liye zaroori
+httpx                  # Streamlit se API call
+
+# --- Database + RAG ---
+sqlalchemy
+psycopg[binary]        # Postgres driver (psycopg v3)
+pgvector               # vector search extension
+rapidfuzz              # vendor naam fuzzy match
+
+# --- Review UI ---
+streamlit
+
+# --- Export ---
+pandas                 # CSV export
