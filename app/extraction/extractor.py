@@ -288,9 +288,11 @@ def _normalize_extracted_json(data: Dict[str, Any]) -> Dict[str, Any]:
             if "vendor_phone" not in d:
                 d["vendor_phone"] = obj.get("phone") or obj.get("mobile")
 
-    # Top level aliases
+    # Top level aliases (do not invent fake vendor if missing)
     if "vendor_name" not in d:
-        d["vendor_name"] = d.get("seller_name") or d.get("vendor") or d.get("supplier_name") or "Unknown Vendor"
+        alias_v = d.get("seller_name") or d.get("vendor") or d.get("supplier_name")
+        if alias_v and isinstance(alias_v, str):
+            d["vendor_name"] = alias_v
 
     # 2. Flatten buyer / customer object if nested
     for k in ["buyer", "customer", "bill_to"]:
@@ -303,11 +305,16 @@ def _normalize_extracted_json(data: Dict[str, Any]) -> Dict[str, Any]:
             if "buyer_address" not in d:
                 d["buyer_address"] = obj.get("address") or obj.get("buyer_address")
 
-    # 3. Invoice Number & Date
+    # 3. Invoice Number & Date aliases (do not invent fake data if missing)
     if "invoice_number" not in d:
-        d["invoice_number"] = d.get("invoice_no") or d.get("invoice_num") or d.get("bill_no") or d.get("bill_number") or "INV-UNKNOWN"
+        alias_no = d.get("invoice_no") or d.get("invoice_num") or d.get("bill_no") or d.get("bill_number")
+        if alias_no:
+            d["invoice_number"] = alias_no
+
     if "invoice_date" not in d:
-        d["invoice_date"] = d.get("date") or d.get("bill_date") or "2024-01-01"
+        alias_date = d.get("date") or d.get("bill_date")
+        if alias_date:
+            d["invoice_date"] = alias_date
 
     # 4. Tax Breakup normalization
     tb = d.get("tax_breakup")
