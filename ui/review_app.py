@@ -88,10 +88,71 @@ CLAY_CSS = """
         --text-muted: #5B4E77;
     }
 
+    /* Header & Navbar Customization (Guarantees sidebar toggle is ALWAYS visible) */
+    header[data-testid="stHeader"] {
+        background: transparent !important;
+        visibility: visible !important;
+        z-index: 99999 !important;
+    }
+    div[data-testid="stToolbar"] {
+        visibility: visible !important;
+        display: flex !important;
+    }
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
-    header {visibility: hidden;}
     .stDeployButton {display: none;}
+    div[data-testid="stDecoration"] {display: none;}
+
+    /* Sidebar Expand Button (When sidebar is collapsed, allows 1-click reopen) */
+    button[data-testid="stExpandSidebarButton"],
+    [data-testid="stExpandSidebarButton"],
+    button[aria-label="Expand sidebar"],
+    button[data-testid="stSidebarCollapsedControl"],
+    [data-testid="collapsedControl"] {
+        visibility: visible !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: linear-gradient(145deg, #FFFFFF, #EFE8FA) !important;
+        border-radius: 14px !important;
+        box-shadow: 4px 4px 12px rgba(165, 145, 205, 0.4), -4px -4px 12px rgba(255, 255, 255, 0.95) !important;
+        border: 2px solid rgba(255, 255, 255, 0.9) !important;
+        color: #7C3AED !important;
+        padding: 6px 12px !important;
+        cursor: pointer !important;
+        z-index: 9999999 !important;
+        transition: all 0.25s ease !important;
+    }
+    button[data-testid="stExpandSidebarButton"]:hover,
+    button[aria-label="Expand sidebar"]:hover,
+    button[data-testid="stSidebarCollapsedControl"]:hover,
+    [data-testid="collapsedControl"]:hover {
+        transform: translateY(-2px) scale(1.08) !important;
+        box-shadow: 6px 6px 16px rgba(165, 145, 205, 0.5), -6px -6px 16px rgba(255, 255, 255, 1.0) !important;
+        color: #6D28D9 !important;
+    }
+
+    /* Sidebar Collapse Button (When sidebar is open) */
+    button[data-testid="stSidebarCollapseButton"],
+    [data-testid="stSidebarCollapseButton"],
+    button[aria-label="Collapse sidebar"] {
+        visibility: visible !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: linear-gradient(145deg, #FFFFFF, #EFE8FA) !important;
+        border-radius: 12px !important;
+        box-shadow: 3px 3px 8px rgba(165, 145, 205, 0.3), -3px -3px 8px rgba(255, 255, 255, 0.85) !important;
+        border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
+        color: #7C3AED !important;
+        cursor: pointer !important;
+        transition: all 0.25s ease !important;
+    }
+    button[data-testid="stSidebarCollapseButton"]:hover,
+    button[aria-label="Collapse sidebar"]:hover {
+        transform: translateY(-1px) scale(1.05) !important;
+        color: #6D28D9 !important;
+    }
 
     .stApp {
         background: linear-gradient(135deg, #F4F0FF 0%, #EAE2F8 30%, #F8F5FF 60%, #ECE4FA 100%);
